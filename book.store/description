@@ -1,0 +1,5 @@
+Simple Soap web service that takes a book reference and returns a book details such as 
+1. title
+2. author
+3. cover image
+4. description

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<project default="build" basedir="../">
+	<property file="cxf_bujava.properties" />
+	<property name="build.dir" value ="${basedir}"></property>
+	<property name="target.dir" value ="${basedir}/target"></property>
+		
+	<path id ="master-classpath">
+		<fileset dir ="${target.dir}/WEB-INF/lib" >
+			<include name ="*.jar"/>
+		</fileset>
+		<pathelement path ="${target.dir}/dest"/>
+	</path>
+	
+
+	<target name="build" description="compile main source tree java files">
+		<echo>build target: running... ${basedir}</echo>
+		<echo>build target: running... ${target.dir}</echo>
+		<mkdir dir ="${target.build}/dest"/>
+		<javac destdir ="${target.build}/dest" source ="1.8" target ="1.8" debug ="true"
+		deprecation ="false" optimize="false" failonerror="true">
+		<src path ="${target.build}"/>
+		<classpath refid ="master-classpath"/>
+	
+		</javac>
+		
+	</target>
+
+	<!-- to do -->
+	<target name="deploy" depends="build" description="Deploy application">
+		<echo>deploy target: running...</echo>
+		<copy todir ="${target.build}/WEB-INF/"/>
+	</target>
+
+	<target name="package" depends="clean,compile">
+		<echo> package target: running...</echo>
+	</target>
+	<target name="clean">
+		<echo>clean target: running...</echo>
+	</target>
+	<target name="compile">
+		<echo>compile target: running...</echo>
+	</target>
+
+</project>
